@@ -129,7 +129,7 @@
       The following unexpected files were <b>discarded</b>:
       <div v-for="filename of submission.discarded_files" class="discarded-file">
         <i class="far fa-trash-alt"></i>
-        {{filename}}
+        "{{filename}}"
       </div>
     </div>
 
