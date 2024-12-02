@@ -31,7 +31,8 @@ describe('FeedbackConfigPanel tests', () => {
                     show_setup_return_code: true,
                     show_setup_timed_out: true,
                     show_setup_stdout: true,
-                    show_setup_stderr: true
+                    show_setup_stderr: true,
+                    show_student_description: true,
                 }
             ],
             [
@@ -41,7 +42,8 @@ describe('FeedbackConfigPanel tests', () => {
                     show_setup_return_code: true,
                     show_setup_timed_out: true,
                     show_setup_stdout: false,
-                    show_setup_stderr: false
+                    show_setup_stderr: false,
+                    show_student_description: true,
                 }
             ],
             [
@@ -51,7 +53,8 @@ describe('FeedbackConfigPanel tests', () => {
                     show_setup_return_code: false,
                     show_setup_timed_out: false,
                     show_setup_stdout: false,
-                    show_setup_stderr: false
+                    show_setup_stderr: false,
+                    show_student_description: false,
                 }
             ]
         ]);
@@ -207,13 +210,13 @@ describe('FeedbackConfigPanel tests', () => {
         });
 
         expect(wrapper.vm.d_configuration).toEqual(ag_test_suite_normal_feedback_config);
-        expect(wrapper.find('[data-testid=preset_selection]').element).toBeVisible();
+        expect(wrapper.find('[data-testid=preset_selection]').isVisible()).toBe(true);
 
         wrapper.setProps({value: null});
         await wrapper.vm.$nextTick();
 
         expect(wrapper.vm.d_configuration).toEqual(null);
-        expect(wrapper.find('[data-testid=preset_selection]').element).not.toBeVisible();
+        expect(wrapper.find('[data-testid=preset_selection]').isVisible()).toBe(false);
     });
 
     test('Presets not provided, no preset dropdown', async () => {
@@ -223,6 +226,6 @@ describe('FeedbackConfigPanel tests', () => {
             }
         });
 
-        expect(wrapper.find('[data-testid=preset_selection]').element).not.toBeVisible();
+        expect(wrapper.find('[data-testid=preset_selection]').isVisible()).toBe(false);
     });
 });

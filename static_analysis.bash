@@ -1,4 +1,11 @@
-set -e
+set -ex
 
-./check_line_length.py -i 'import' -i '} from' 100 'src/**/*.*' 'tests/**/*.ts'
+npx eslint \
+    'tests/e2e/**/*.ts'
+
+npx prettier --check \
+    './*.js' \
+    './*.ts' \
+    'tests/e2e/**/*.ts'
+
 ./check_subscribe_unsubscribe.py 'src/**/*.vue'
