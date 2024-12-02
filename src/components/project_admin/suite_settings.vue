@@ -52,7 +52,7 @@
         <div>
           <i class="fas fa-exclamation-triangle warning-tip"></i>
           <tooltip width="large" placement="right">
-            Allowing network access may expose your files to students' code.
+            {{WARNING_MESSAGE}}
           </tooltip>
         </div>
         <toggle :value="d_suite.allow_network_access"
@@ -76,9 +76,7 @@
               Confirm Access
             </div>
             <div class="modal-body">
-              Are you sure you want to allow network access in this sandbox?
-                <br>
-              This may trivially expose your files to students' code.
+              {{WARNING_MESSAGE}}
             </div>
             <div class="modal-button-footer">
               <button data-testid="allow_network_access_button"
@@ -251,6 +249,15 @@ export default class SuiteSettings extends Vue {
   d_show_allow_network_access_modal = false;
 
   readonly is_not_empty = is_not_empty;
+
+  readonly WARNING_MESSAGE = `Allowing network access means that student
+   code could steal sensitive files or other information present in the sandbox
+    (e.g., test cases, solution files) with a simple network request. 
+    If network access is required for your test cases to work, 
+    you may be able to mitigate the risk by deleting sensitive files at 
+    the and of the test suite setup phase. If there are sensitive files that 
+    cannot be deleted from the sandbox, then you should be aware of the risks 
+    associated with this setting.`;
 
   created() {
     this.d_suite = new Suite(this.suite);
